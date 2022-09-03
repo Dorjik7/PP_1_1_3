@@ -1,5 +1,21 @@
 package jm.task.core.jdbc.util;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Connection;
 
 public class Util {
-    // реализуйте настройку соеденения с БД
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String HOST = "jdbc:mysql://localhost:3306/kata_pp";
+    private static final String LOGIN = "root";
+    private static final String PASSWORD = "root";
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(HOST, LOGIN, PASSWORD);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
 }
